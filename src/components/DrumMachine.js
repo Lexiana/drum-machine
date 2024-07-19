@@ -1,23 +1,77 @@
-import React from 'react'
+import React, { useState } from 'react';
+import DrumPad from './DrumPad'
+
+const drumPads = [
+    {
+        id: 'Heater 1',
+        letter: 'Q',
+        src: 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-1.mp3',
+    },
+    {
+        id: 'Heater 2',
+        letter: 'W',
+        src: 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-2.mp3',
+    },
+    {
+        id: 'Heater 3',
+        letter: 'E',
+        src: 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-3.mp3',
+    },
+    {
+        id: 'Heater 4',
+        letter: 'A',
+        src: 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-4_1.mp3',
+    },
+    {
+        id: 'Clap',
+        letter: 'S',
+        src: 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-6.mp3',
+    },
+    {
+        id: 'Open-HH',
+        letter: 'D',
+        src: 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Dsc_Oh.mp3',
+    },
+    {
+        id: 'Kick-n\'-Hat',
+        letter: 'Z',
+        src: 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Kick_n_Hat.mp3',
+
+    },
+    {
+        id: 'Kick',
+        letter: 'X',
+        src: 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/RP4_KICK_1.mp3',
+    },
+    {
+        id: 'Closed-HH',
+        letter: 'C',
+        src: 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Cev_H2.mp3',
+    },
+];
+
 
 const DrumMachine = () => {
+    const [display, setDisplay] = useState('');
+    
+
+    const handleDisplay = (id) => {
+        setDisplay(id);
+    }
     return (
         <div id='drum-machine'
-            className='flex justify-center items-center w-full h-screen grid-cols-2 gap-5'
+            className='grid grid-cols-2 w-1/2  justify-center items-center h-screen m-auto '
         >
-            <div className='grid grid-cols-3 gap-2'>
-
-                <button className='rounded w-20 h-20 drum-pad grid-cols-4 bg-teal-400'>Q</button>
-                <button className='rounded w-20 h-20 drum-pad grid-cols-4 bg-teal-400'>W</button>
-                <button className='rounded w-20 h-20 drum-pad grid-cols-4 bg-teal-400'>E</button>
-                <button className='rounded w-20 h-20 drum-pad grid-cols-4 bg-teal-400'>A</button>
-                <button className='rounded w-20 h-20 drum-pad grid-cols-4 bg-teal-400'>S</button>
-                <button className='rounded w-20 h-20 drum-pad grid-cols-4 bg-teal-400'>D</button>
-                <button className='rounded w-20 h-20 drum-pad grid-cols-4 bg-teal-400'>Z</button>
-                <button className='rounded w-20 h-20 drum-pad grid-cols-4 bg-teal-400'>X</button>
-                <button className='rounded w-20 h-20 drum-pad grid-cols-4 bg-teal-400'>C</button>
-
-
+            <div className="pad-bank grid grid-cols-3 gap-y-4 w-10/12 ">
+                {drumPads.map((pad) => (
+                    <DrumPad
+                        key={pad.id}
+                        id={pad.id}
+                        letter={pad.letter}
+                        src={pad.src}
+                        handleDisplay={handleDisplay}
+                    />
+                ))}
             </div>
             <div className='grid grid-rows-4 justify-items-center'>
                 <div className='power grid-rows-2 mb-5'>
@@ -28,9 +82,9 @@ const DrumMachine = () => {
                         </div>
                     </label>
                 </div>
-                
-                    <div id="display" class="rounded w-full h-10 bg-teal-400 text-center content-center">test</div>
-                
+
+                <div id="display" class="rounded w-full h-10 bg-teal-400 text-center content-center">test</div>
+
                 <div className='volume grid-rows-2'>
                     <div class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300 row text-center">Volume</div>
                     <input type="range" id="volume" name="volume" min="0" max="100" />
