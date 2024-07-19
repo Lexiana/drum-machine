@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 
-const DrumPad = ({ id, letter, src, handleDisplay, power }) => {
+const DrumPad = ({ id, letter, src, handleDisplay, power, volume }) => {
     const [active, setActive] = useState(false);
     const playSound = () => {
         if (power) {
             const sound = document.getElementById(letter);
+            sound.volume = volume;
             sound.currentTime = 0;
             sound.play();
             handleDisplay(id);
@@ -15,6 +16,13 @@ const DrumPad = ({ id, letter, src, handleDisplay, power }) => {
 
     }
     
+    useEffect(() => {
+        const audio = document.getElementById(letter);
+        if (audio) {
+          audio.volume = volume;
+        }
+      }, [volume, letter]);
+
     useEffect(() => {
         const handleKeyPress = (e) => {
           if (e.key.toUpperCase() === letter && power) {
