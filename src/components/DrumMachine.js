@@ -71,9 +71,9 @@ const DrumMachine = () => {
 
     return (
         <div id='drum-machine'
-            className='grid grid-cols-2 w-1/2  justify-center items-center h-screen m-auto '
+            className='grid xs:grid-rows-2  sm:grid-cols-2  lg:w-6/12 sm:w-11/12 xs:w-11/12  justify-center items-center h-screen m-auto '
         >
-            <div className="pad-bank grid grid-cols-3 gap-y-4 w-10/12 ">
+            <div className="pad-bank grid grid-cols-3 gap-4 w-11/12 m-auto ">
                 {drumPads.map((pad) => (
                     <DrumPad
                         key={pad.id}
@@ -86,7 +86,7 @@ const DrumMachine = () => {
                     />
                 ))}
             </div>
-            <div className='grid grid-rows-3 justify-items-center'>
+            <div className='grid grid-rows-3 justify-items-center '>
                 <div className='power grid-rows-2 mb-5'>
                     <div className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300 row">Power</div>
                     <label className="relative inline-flex items-center cursor-pointer row">
